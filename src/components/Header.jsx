@@ -94,7 +94,7 @@ const Header = () => {
                     </button>
                     {openDropdown === item.label && (
                       <div 
-                        className="absolute top-full left-0 pt-2 z-50"
+                        className="absolute top-full left-0 pt-4 z-50"
                       >
                         <div className="w-56 bg-white rounded-lg shadow-xl py-2 animate-fade-in">
                           {item.dropdown.map((subItem) => (

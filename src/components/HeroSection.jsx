@@ -57,12 +57,12 @@ const HeroSection = () => {
                     {slide.verseReference}
                   </p>
                 </div>
-                <a
+                {/* <a
                   href={slide.ctaLink}
                   className="inline-block bg-[#d4af37] text-[#011F5B] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#c19b2f] transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   {slide.ctaText}
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ const HeroSection = () => {
       ))}
 
       {/* Navigation Arrows */}
-      <button
+      {/* <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300"
         aria-label="Previous slide"
@@ -83,7 +83,7 @@ const HeroSection = () => {
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6" />
-      </button>
+      </button> */}
 
       {/* Dots Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
