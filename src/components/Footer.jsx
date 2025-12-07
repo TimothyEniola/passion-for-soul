@@ -190,13 +190,13 @@ export default function Footer() {
               className="relative group text-white/80 hover:text-[#d4af37] transition-all duration-300"
             >
               {/* TOP LINE */}
-              <span className="absolute -top-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -top-2 left-0 w-0 h-0.5 bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
 
               {/* ICON */}
               <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-125" />
 
               {/* BOTTOM LINE */}
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
