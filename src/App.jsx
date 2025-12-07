@@ -11,6 +11,7 @@ import EventsPage from './pages/EventsPage';
 import SermonsPage from './pages/SermonsPage';
 import GivingPage from './pages/GivingPage';
 import ContactPage from './pages/ContactPage';
+import Gallery from './pages/Gallery';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/sermons" element={<SermonsPage />} />
             <Route path="/giving" element={<GivingPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </main>
         <Footer />
