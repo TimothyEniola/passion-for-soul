@@ -6,7 +6,7 @@ export const heroSlides = [
     title: 'Passion For Souls Christain Ministry',
     subtitle: 'Welcome to Our Church',
     verse: ' And he said unto them, Go ye into all the world, and preach the gospel to every creature. He that believeth and is baptized shall be saved; but he that believeth not shall be damned',
-    verseReference: '-Mark 16:15-16-',
+    verseReference: '-Mark 16:15-',
     backgroundImage: 'https://images.unsplash.com/photo-1713552566195-d306f267e359?w=1920&q=80',
     ctaText: 'Find A Parish Near You',
     ctaLink: '#contact'

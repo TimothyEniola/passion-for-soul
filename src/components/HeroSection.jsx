@@ -1,16 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroSlides } from '../data/mockData';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const swipeStartX = useRef(0);
+  const interactionTimeout = useRef(null);
+
+  const SWIPE_THRESHOLD = 70; // Minimum distance for a swipe
 
   useEffect(() => {
+    if (isInteracting) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+
+    return () => {
+      clearInterval(timer);
+      if (interactionTimeout.current) {
+        clearTimeout(interactionTimeout.current);
+      }
+    };
+  }, [isInteracting]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -24,8 +37,41 @@ const HeroSection = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
 
+  const handleInteractionStart = () => {
+    setIsInteracting(true);
+    if (interactionTimeout.current) {
+      clearTimeout(interactionTimeout.current);
+    }
+  };
+
+  const handleInteractionEnd = () => {
+    // Resume autoplay after a delay
+    interactionTimeout.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 3000); // 3-second delay before resuming
+  };
+
+  const handlePointerDown = (e) => {
+    handleInteractionStart();
+    swipeStartX.current = e.clientX;
+    // Add a class to prevent text selection while dragging
+    e.currentTarget.classList.add('swiping');
+  };
+
+  const handlePointerUp = (e) => {
+    const swipeEndX = e.clientX;
+    const deltaX = swipeEndX - swipeStartX.current;
+
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      if (deltaX < 0) goToNext();
+      else goToPrevious();
+    }
+    handleInteractionEnd();
+    e.currentTarget.classList.remove('swiping');
+  };
+
   return (
-    <section id="home" className="relative h-screen">
+    <section id="home" className="relative h-screen cursor-grab active:cursor-grabbing" onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
       {/* Slides */}
       {heroSlides.map((slide, index) => (
         <div
@@ -92,7 +138,9 @@ const HeroSection = () => {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide ? 'bg-[#d4af37] w-8' : 'bg-white/50 hover:bg-white/70'
+              index === currentSlide
+                ? 'bg-[#d4af37] w-8'
+                : 'bg-white/50 hover:bg-white/70'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
